@@ -1,0 +1,23 @@
+{% extends 'personal_info/base.html' %}
+{% load mytags %}
+{% block title_content %}{{ object.name }}的信息{% endblock %}
+{% block body_content %}
+  <div class="card {% if object.temperature > 37.5 %}text-white bg-danger{% endif %}" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{ object.name }}的信息</h5>
+      <p class="card-text">
+        <span class="badge badge-info bg-info">{{ object.gender|yesno:"男,女" }}</span>
+        <span class="badge badge-secondary bg-info">{{ object.age }}</span>
+      </p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">身份证：{{ object.id_card }}</li>
+      <li class="list-group-item">现住址：{{ object.address }}</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">编辑</a>
+      <a href="#" class="card-link">删除</a>
+      <a class="float-end" href="{% url 'personal_info:person_list' %}">返回</a>
+    </div>
+  </div>
+{% endblock %}

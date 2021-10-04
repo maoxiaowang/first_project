@@ -1,0 +1,15 @@
+{% extends 'personal_info/base.html' %}
+{% load mytags %}
+
+{% block title_content %}疫情人员信息删除{% endblock %}
+
+{% block body_content %}
+  <div class="col-4">
+    <div class="alert alert-danger mb-4">是否删除{{ object.name }}的信息？</div>
+    <form action="{% url 'personal_info:person_delete' object.pk %}" method="post">
+      {% csrf_token %}
+      <button class="btn btn-danger" type="submit">删除</button>
+    </form>
+  </div>
+
+{% endblock %}

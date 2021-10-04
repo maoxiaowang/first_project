@@ -1,0 +1,17 @@
+{% extends 'personal_info/base.html' %}
+{% load mytags %}
+{% block title_content %}登记人员信息{% endblock %}
+
+{% block body_content %}
+    <form action="{% url 'personal_info:person_create' %}" method="post">
+      {% csrf_token %}
+      {% for item in form %}
+        <div class="col-md-6 mb-3">
+          {{ item|label_class:'form-label' }}
+          {{ item }}
+          {{ item.errors }}
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">保存</button>
+    </form>
+{% endblock %}

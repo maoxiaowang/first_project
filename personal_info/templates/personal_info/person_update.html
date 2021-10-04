@@ -1,0 +1,19 @@
+{% extends 'personal_info/base.html' %}
+{% load mytags %}
+
+{% block title_content %}疫情人员信息修改{% endblock %}
+
+{% block body_content %}
+  <form action="{% url 'personal_info:person_update' object.pk %}" method="post">
+    {% csrf_token %}
+    {% for item in form %}
+      <div class="col-md-6 mb-3">
+        {{ item|label_class:'form-label' }}
+        {{ item }}
+        {{ item.errors }}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">保存</button>
+    <a class="btn btn-danger" href="{% url 'personal_info:person_delete' object.pk %}">删除</a>
+  </form>
+{% endblock %}
